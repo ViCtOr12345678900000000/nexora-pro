@@ -39,7 +39,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           <nav className="mt-2 px-2 pb-6">
             {Object.entries(sections).map(([label, items]) => (
               <div key={label} className="mb-6">
-                <p className="px-3 text- tracking-[0.15em] text-white/30 mb-2 font-medium">{label}</p>
+                <p className="px-3 text- tracking-[0.15em] uppercase text-white/30 mb-2 font-medium">{label}</p>
                 <div className="space-y-0.5">
                   {items.map(name => {
                     const isActive = active === name;
@@ -47,7 +47,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                       <button
                         key={name}
                         onClick={() => setActive(name)}
-                        className={`w-full text-left px-3 py-2.5 text- rounded-md flex items-center gap-3 transition-all
+                        className={`w-full text-left px-3 font-extralight py-2.5 text- rounded-md flex items-center gap-3 transition-all
                           ${isActive
                           ? 'bg-[#1e2d2d] text-white border-l-2 border-teal-400'
                             : 'text-white/60 hover:text-white hover:bg-white/5 border-l-2 border-transparent'}`}
@@ -66,10 +66,11 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         <div className="min-w- p-3 border-t border-white/5 bg-[#111115]">
           <div className="flex items-center justify-between bg-[#1a1a20]/50 rounded-lg p-2">
             <div className="flex items-center gap-2.5">
-              <img src="https://i.pravatar.cc/100?img=12" className="w-8 h-8 rounded-full" />
+              
+              <p className='w-8 h8 rounded-full'>AD</p>
               <div className="leading-tight">
-                <p className="text- font-medium">Alex Morgan</p>
-                <p className="text- text-white/40">Admin • alex@nexora.io</p>
+                <p className="text- font-medium uppercase">VIctor Chinedu</p>
+                <p className="text- text-white/40 font-extralight">Admin • victor@nexora.io</p>
               </div>
             </div>
             

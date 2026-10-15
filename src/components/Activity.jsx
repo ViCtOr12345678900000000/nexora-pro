@@ -39,7 +39,7 @@ export default function Activity(){
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search activity..."
-                  className="h-8 bg-white/[0.04] border border-white/10 rounded-full px-3 text-[11px] placeholder:text-white/20 focus:outline-none focus:border-teal-400/30 w-[180px]"
+                  className="h-8 bg-white/[0.04] border border-white/10 rounded-full px-3 text-[11px] placeholder:text-white/20 focus:outline-none focus:border-teal-400/30 w-[80px]  md:w-[180px] lg:w-[250px]"
                 />
                 <div className="flex gap-1.5">
                   {['All', 'Completed', 'Paid', 'Renewed'].map(f => (

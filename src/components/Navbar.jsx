@@ -7,8 +7,8 @@ export default function Navbar({ isOpen, setIsOpen }){
         </button>
 
         <div>
-          <h1 className="text- lg:text- font-bold leading-none tracking-tight">Dashboard</h1>
-          <p className=" text-[7px] lg:text-sm text-white/60">Welcome back, Alex - here's what's happening today</p>
+          <h1 className="text- lg:text- font-bold leading-none tracking-tight uppercase">Dashboard</h1>
+          <p className=" text-[7px] lg:text-sm text-white/60 font-extralight">Welcome back, Victor - here's what's happening today</p>
         </div>
       </div>
 
