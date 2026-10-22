@@ -12,43 +12,63 @@ import Conversion from "./components/Conversion";
 import Performance from "./components/Performance";
 import Goal from "./components/Goal";
 
+import Analytics from "./pages/Analytics";
+import Customers from "./pages/Customers";
+import Orders from "./pages/Orders";
+import Products from "./pages/Products";
+import Invoices from "./pages/Invoices";
+import Campaigns from "./pages/Campaigns";
+import Insights from "./pages/Insights";
+import Team from "./pages/Team";
+import Integrations from "./pages/Integrations";
+import Settings from "./pages/Settings";
+
+function DashboardPage(){
+  return(
+    <div className="space-y-4">
+      <Stats />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="lg:col-span-2 space-y-4"><Revenue/><Activity /></div>
+        <div className="space-y-4"><Traffic /><Growth /></div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
+        <TopProducts />
+        <div className="lg:col-span-2"><DataTable /></div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
+        <Conversion /><Performance /><Goal />
+      </div>
+    </div>
+  )
+}
+
 export default function App(){
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activePage, setActivePage] = useState('Dashboard');
+
+  const renderPage = () => {
+    switch(activePage){
+      case 'Analytics': return <Analytics/>;
+      case 'Customers': return <Customers/>;
+      case 'Orders': return <Orders/>;
+      case 'Products': return <Products/>;
+      case 'Invoices': return <Invoices/>;
+      case 'Campaigns': return <Campaigns/>;
+      case 'Insights': return <Insights/>;
+      case 'Team': return <Team/>;
+      case 'Integrations': return <Integrations/>;
+      case 'Settings': return <Settings/>;
+      default: return <DashboardPage/>;
+    }
+  }
 
   return(
-    <div className="flex min-h-screen bg-[#0a0a0f] text-white">
-      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+    <div className="flex min-h-screen bg-[#f9f8f6] text-[#1a1a1a]">
+      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} activePage={activePage} setActivePage={setActivePage} />
       <div className="flex-1 flex flex-col min-w-0">
-        <Navbar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
         <main className="p-4 lg:p-6 space-y-4">
-          <Stats />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div className="lg:col-span-2 space-y-4">
-              <Revenue/>
-              <Activity />
-            </div>
-            <div className="space-y-4">
-              <Traffic />
-              <Growth />
-            </div>
-          </div>
-
-          {/* MAP MASTERY ROW */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
-            <TopProducts />
-            <div className="lg:col-span-2">
-              <DataTable />
-            </div>
-          </div>
-
-          {/* NEW RECHARTS ROW - 3 ADVANCED CHARTS */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
-            <Conversion />
-            <Performance />
-            <Goal />
-          </div>
-
+          {renderPage()}
         </main>
       </div>
     </div>
