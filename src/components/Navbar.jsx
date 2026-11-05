@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Settings from '../pages/Settings'
+import { Bell, SettingsIcon } from 'lucide-react';
 
 export default function Navbar({ isOpen, setIsOpen }){
   const [showSettings, setShowSettings] = useState(false);
@@ -27,18 +28,17 @@ export default function Navbar({ isOpen, setIsOpen }){
           <span className="absolute left-3 top-1 text-[17px] text-black/40">⌕</span>
           <input 
           value={search}
-          onChange={(e)=> handleSearch(e.target.value)}
+          onChange={(e)=> setSearch(e.target.value)}
           className="w-[300px] h-8 border border-[#efece6] rounded-full placeholder:text-black/30 focus:outline-none bg-[#f7f5f2] text-[12px] pl-8 pr-3" type="text" placeholder="Search customers, order, analytics" />
         </div>
-        <button className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center relative">🔔 
+        <button className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center relative"><Bell size={20} />
           <span className="absolute top-1 right-1 w-3 h-3 bg-red-500 text-[8px] text-white font-bold rounded-full grid place-items-center">16</span>
         </button>
-        <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center relative">⚙️</button>
+        <button onClick={() => setShowSettings(true)} className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center relative"><SettingsIcon size={20} /></button>
         <div className="hidden lg:flex items-center gap-2 rounded-full px-2 py-1">
             <span className="text-emerald-700 px-2 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-[10px]">React 18</span>
-            <span className="text-[9px] text-black/50">Portfolio • v2.4.0</span>
+            <span className="text-[9px] text-black/50">Dashboard • v2.4.0</span>
         </div>
-        <button className="h-8 px-3.5 bg-white border border-[#efece6] rounded-full text-[12px] font-medium flex items-center gap-1.5 text-[#1a1a1a]">↓ Export</button>
       </div>
     </header>
 
@@ -49,7 +49,7 @@ export default function Navbar({ isOpen, setIsOpen }){
         <div className="relative w-full max-w-[400px] bg-white h-full overflow-y-auto shadow-xl p-5">
           <div className="flex justify-between items-center mb-4">
             <h2 className="font-semibold">Settings</h2>
-            <button onClick={() => setShowSettings(false)} className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center">✕</button>
+            <button onClick={() => setShowSettings(false)} className="w-8 text-red-400 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center">✕</button>
           </div>
           <Settings />
         </div>

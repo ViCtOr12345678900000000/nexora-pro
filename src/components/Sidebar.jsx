@@ -1,5 +1,5 @@
 import { User } from "lucide-react"
-import { Settings, LayoutDashboard, ChartNoAxesCombined, Rocket, Receipt, Users, Ellipsis, Puzzle, MessageCircle } from "lucide-react";
+import { Settings, LayoutDashboard,Home, ChartNoAxesCombined, Rocket, Receipt, Users, Ellipsis, Puzzle, MessageCircle } from "lucide-react";
 
 export default function Sidebar({ isOpen, setIsOpen, activePage, setActivePage }) {
   const userName = localStorage.getItem('settings-name')
@@ -42,7 +42,7 @@ export default function Sidebar({ isOpen, setIsOpen, activePage, setActivePage }
       <aside className={`fixed lg:sticky top-0 left-0 z-40 h-screen bg-white border-r border-[#efece6] flex flex-col shrink-0 transition-all duration-300 ${isOpen ? 'w-64 translate-x-0' : 'w-64 -translate-x-full lg:w-0 lg:overflow-hidden lg:border-0'}`}>
         <div className="flex-1 overflow-y-auto min-w-[220px]">
           <div className="p-5 flex items-center gap-3 sticky top-0 bg-white z-10">
-            <div className="w-8 h-8 rounded-full bg-[#111] grid place-items-center text-white font-bold">⬢</div>
+            <div className="w-8 h-8 rounded-full bg-[#111] grid place-items-center text-white font-extralight"><Home size={20} /></div>
             <div><p className="font-bold text-[#111]">Nexora</p><p className="text-[10px] text-black/40">SaaS Platform</p></div>
           </div>
           <nav className="mt-2 px-2 pb-6">
