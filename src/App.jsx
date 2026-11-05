@@ -66,7 +66,7 @@ export default function App(){
     <div className="flex min-h-screen bg-[#f9f8f6] text-[#1a1a1a]">
       <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} activePage={activePage} setActivePage={setActivePage} />
       <div className="flex-1 flex flex-col min-w-0">
-        <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+        <Navbar isOpen={isOpen} setIsOpen={setIsOpen}  />
         <main className="p-4 lg:p-6 space-y-4">
           {renderPage()}
         </main>

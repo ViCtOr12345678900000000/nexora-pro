@@ -3,6 +3,12 @@ import Settings from '../pages/Settings'
 
 export default function Navbar({ isOpen, setIsOpen }){
   const [showSettings, setShowSettings] = useState(false);
+  const [search, setSearch] = useState('')
+
+    const userName = localStorage.getItem('settings-name')
+    ? JSON.parse(localStorage.getItem('settings-name'))
+    : 'Victor Chinedu';
+
 
   return(
     <>
@@ -13,13 +19,16 @@ export default function Navbar({ isOpen, setIsOpen }){
         </button>
         <div>
           <h1 className="text-[#111] font-bold leading-none tracking-tight uppercase">Dashboard</h1>
-          <p className="text-[7px] lg:text-sm text-black/50 font-light">Welcome back, Victor - here's what's happening today</p>
+          <p className="text-[7px]  lg:text-sm text-black/50 font-light">Welcome back, {userName} - here's what's happening today</p>
         </div>
       </div>
       <div className="flex items-center gap-2 lg:gap-3">
         <div className="relative hidden md:block">
-          <span className="absolute left-3 top-1 text-[20px] text-black/40">⌕</span>
-          <input className="w-[300px] h-8 border border-[#efece6] rounded-full placeholder:text-black/30 focus:outline-none bg-[#f7f5f2] text-[12px] pl-8 pr-3" type="text" placeholder="Search customers, order, analytics" />
+          <span className="absolute left-3 top-1 text-[17px] text-black/40">⌕</span>
+          <input 
+          value={search}
+          onChange={(e)=> handleSearch(e.target.value)}
+          className="w-[300px] h-8 border border-[#efece6] rounded-full placeholder:text-black/30 focus:outline-none bg-[#f7f5f2] text-[12px] pl-8 pr-3" type="text" placeholder="Search customers, order, analytics" />
         </div>
         <button className="w-8 h-8 rounded-full bg-[#f7f5f2] border border-[#efece6] grid place-items-center relative">🔔 
           <span className="absolute top-1 right-1 w-3 h-3 bg-red-500 text-[8px] text-white font-bold rounded-full grid place-items-center">16</span>

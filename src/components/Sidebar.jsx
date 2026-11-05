@@ -1,6 +1,16 @@
 import { useState } from 'react';
+import {User} from "lucide-react"
 
 export default function Sidebar({ isOpen, setIsOpen, activePage, setActivePage }) {
+      const userName = localStorage.getItem('settings-name')
+    ? JSON.parse(localStorage.getItem('settings-name'))
+    : 'Victor Chinedu';
+
+    const userMail = localStorage.getItem('settings-email')
+      ? JSON.parse(localStorage.getItem('settings-email'))
+      :'victor@nexora.org'
+    
+  
   const sections = {
     MENU: ['Dashboard','Analytics','Customers','Orders','Products','Invoices'],
     GROWTH: ['Campaigns','Insights'],
@@ -33,8 +43,11 @@ export default function Sidebar({ isOpen, setIsOpen, activePage, setActivePage }
         </div>
         <div className="p-3 border-t border-[#f3f0eb] bg-[#fbfaf8] min-w-[220px]">
           <div className="flex items-center gap-2.5 bg-white border border-[#efece6] rounded-lg p-2">
-            <div className="w-8 h-8 rounded-full bg-[#f3f0eb] grid place-items-center text-[10px] font-bold">AD</div>
-            <div className="leading-tight"><p className="text-[11px] font-medium">VICTOR CHINEDU</p><p className="text-[10px] text-black/40">Admin</p></div>
+            <div className="w-8 h-8 rounded-full bg-[#f3f0eb] grid place-items-center text-[10px] font-bold"><User size={15} /></div>
+            <div className="leading-tight">
+              <p className=" uppercase text-[11px] font-medium">{userName}</p>
+              <p className="  text-[11px] font-medium">{userMail}</p>
+            </div>
           </div>
         </div>
       </aside>
