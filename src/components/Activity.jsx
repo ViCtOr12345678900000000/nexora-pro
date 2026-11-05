@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
-const data = [
+const initialData = [
     { id: 1, photo: 'OC', heading: 'New customer signup', client: 'Olivia Chen', info: 'olivia@example.com', detail: 'Pro-plan', timestamp: '2min ago', state: 'Completed'},
     { id: 2, photo: 'JD', heading: 'Payment received', client: 'John Doe', info: 'john@example.com', detail: 'Enterprise', timestamp: '15min ago', state: 'Paid'},
     { id: 3, photo: 'SK', heading: 'Subscription renewed', client: 'Sarah Kim', info: 'sarah@example.com', detail: 'Basic', timestamp: '1h ago', state: 'Renewed'},
     { id: 4, photo: 'MP', heading: 'New customer signup', client: 'Mike Park', info: 'mike@example.com', detail: 'Pro-plan', timestamp: '2h ago', state: 'Completed'},
     { id: 5, photo: 'AL', heading: 'Support ticket resolved', client: 'Alex Lee', info: 'Login issue', detail: 'Priority', timestamp: '3h ago', state: 'Resolved'},
+    { id: 6, photo: 'VC', heading: 'Subscription renewed', client: 'Victor Chinedu', info: 'victor@gmail.com', detail: 'Pro-plan', timestamp: '2min ago', state: 'Renewed'},
 ];
 
 function getStateColor(state) {
@@ -16,10 +18,24 @@ function getStateColor(state) {
 }
 
 export default function Activity(){
+    const [activities, setActivities] = useLocalStorage('Activity', initialData);
     const [filter, setFilter] = useState('All');
     const [search, setSearch] = useState('');
 
-    const filtered = data.filter(a => {
+    // NEW: click state to cycle it
+    const handleState = (id) => {
+      setActivities(activities.map(a => {
+        if (a.id !== id) return a;
+        const next =
+          a.state === "Completed" ? "Paid"
+          : a.state === "Paid" ? "Renewed"
+          : a.state === "Renewed" ? "Resolved"
+          : "Completed";
+        return { ...a, state: next };
+      }));
+    };
+
+    const filtered = activities.filter(a => {
       const matchFilter = filter === 'All' || a.state === filter;
       const matchSearch = a.client.toLowerCase().includes(search.toLowerCase()) || a.heading.toLowerCase().includes(search.toLowerCase());
       return matchFilter && matchSearch;
@@ -30,13 +46,13 @@ export default function Activity(){
             <header className="flex flex-col gap-3 mb-5">
               <div className="flex justify-between items-center">
                 <h3 className="font-semibold text-[14px] text-[#1a1a1a]">Recent Activity • {filtered.length}</h3>
-                <span className="text-[11px] text-black/40">Live updates</span>
+                <span className="text-[11px] text-black/40 rounded-full border p-1.5 bg-emerald-50 text-emerald-700 ">Live updates •</span>
               </div>
               <div className="flex items-center gap-2">
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search activity..."
+                  placeholder="Search..."
                   className="h-8 bg-[#f7f5f2] border border-[#efece6] rounded-full px-3 text-[11px] placeholder:text-[#b5b0a9] focus:outline-none focus:border-black/20 w-[80px] md:w-[180px] lg:w-[250px]"
                 />
                 <div className="flex gap-1.5">
@@ -66,9 +82,9 @@ export default function Activity(){
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                    <span className={`text-[10px] px-2.5 py-1 rounded-full border ${getStateColor(a.state)}`}>
+                    <button onClick={() => handleState(a.id)} className={`text-[10px] px-2.5 py-1 rounded-full border cursor-pointer ${getStateColor(a.state)}`}>
                       {a.state}
-                    </span>
+                    </button>
                     <span className="text-[10px] text-black/30">{a.timestamp}</span>
                   </div>
                 </div>

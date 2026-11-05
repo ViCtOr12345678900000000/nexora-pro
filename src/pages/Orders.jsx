@@ -1,11 +1,6 @@
 import { useState } from 'react';
-const orders = [
-  {id:'#1023', customer:'Olivia Chen', amount:'$240', state:'Paid', date:'2min ago'},
-  {id:'#1022', customer:'John Doe', amount:'$890', state:'Pending', date:'15min ago'},
-  {id:'#1021', customer:'Sarah Kim', amount:'$120', state:'Completed', date:'1h ago'},
-  {id:'#1020', customer:'Mike Park', amount:'$450', state:'Shipped', date:'3h ago'},
-  {id:'#1019', customer:'Alex Lee', amount:'$60', state:'Failed', date:'5h ago'},
-];
+import { useLocalStorage } from '../hooks/useLocalStorage';
+
 function getStateColor(s){
   if(s==='Paid') return 'bg-blue-50 text-blue-700 border-blue-200';
   if(s==='Completed') return 'bg-emerald-50 text-emerald-700 border-emerald-200';
@@ -13,14 +8,44 @@ function getStateColor(s){
   if(s==='Failed') return 'bg-red-50 text-red-700 border-red-200';
   return 'bg-amber-50 text-amber-700 border-amber-200';
 }
+
 export default function Orders(){
+  const [orders, setOrders] = useLocalStorage('orders', [
+    {id:'#1023', customer:'Olivia Chen', amount:'$240', state:'Paid', date:'2min ago'},
+    {id:'#1022', customer:'John Doe', amount:'$890', state:'Pending', date:'15min ago'},
+    {id:'#1021', customer:'Sarah Kim', amount:'$120', state:'Completed', date:'1h ago'},
+    {id:'#1020', customer:'Mike Park', amount:'$450', state:'Shipped', date:'3h ago'},
+    {id:'#1019', customer:'Alex Lee', amount:'$60', state:'Failed', date:'5h ago'},
+  ]);
+
+  const handleOrder = (id) => {
+    setOrders(
+      orders.map(o => {
+        if (o.id !== id) return o;
+        const next =
+          o.state === "Paid"
+            ? "Pending"
+            : o.state === "Pending"
+            ? "Completed"
+            : o.state === "Completed"
+            ? "Shipped"
+            : o.state === "Shipped"
+            ? "Failed"
+            : "Paid";
+            
+        return { ...o, state: next };
+      })
+    );
+  };
+
   const [search,setSearch]=useState('');
   const [filter,setFilter]=useState('All');
   const filtered = orders.filter(o=>{
-    const mFilter = filter==='All'||o.state===filter;
     const mSearch = o.customer.toLowerCase().includes(search.toLowerCase())||o.id.toLowerCase().includes(search.toLowerCase());
+    const mFilter = filter==='All'||o.state===filter;
     return mFilter && mSearch;
   });
+
   return(
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -48,12 +73,15 @@ export default function Orders(){
             </div>
             <div className="flex items-center gap-3">
               <p className="text-[13px] font-bold">{o.amount}</p>
-              <span className={`text-[10px] px-2.5 py-1 rounded-full border ${getStateColor(o.state)}`}>
+              <button onClick={() => handleOrder(o.id)} className={`text-[10px] px-2.5 py-1 rounded-full border cursor-pointer ${getStateColor(o.state)}`}>
                 {o.state}
-              </span>
+              </button>
             </div>
           </div>
         ))}
+        {filtered.length === 0 && (
+          <p className="text-[11px] text-black/30 text-center py-8">No results found</p>
+        )}
       </div>
     </div>
   )
