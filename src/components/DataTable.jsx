@@ -52,13 +52,13 @@ export default function DataTable(){
   }
 
   return(
-    <div className="lg:col-span-2 bg-white border border-[#efece6] rounded-2xl p-5 flex flex-col h-full shadow-[0_2px_20px_rgba(0,0,0,0.04)]">
+    <div className="lg:col-span-2 bg-white border border-[#efece6] rounded-2xl p-5 flex flex-col h-[520px] max-h-[520px] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.04)]">
       <div className="flex justify-between items-center mb-4 gap-3">
         <h3 className="font-semibold text-[14px] text-[#1a1a1a]">Customers • {filtered.length}</h3>
         <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search... try 'olivia'" className="h-8 px-3 bg-[#f7f5f2] border border-[#efece6] rounded-full text-[12px] focus:outline-none w-[160px] placeholder:text-[#b5b0a9]" />
       </div>
 
-      <div className="space-y-1 flex-1">
+      <div className="space-y-1 flex-1 min-h-0 overflow-y-auto pr-1">
         {filtered.map(user => (
           <div key={user.id} className="flex items-center justify-between p-2.5 rounded-xl hover:bg-[#f7f5f2] group">
             <div className="flex gap-3 items-center">
