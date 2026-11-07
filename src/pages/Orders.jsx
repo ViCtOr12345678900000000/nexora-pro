@@ -66,7 +66,7 @@ export default function Orders(){
       </div>
       <div className="bg-white border border-[#efece6] rounded-2xl overflow-hidden">
         {filtered.map(o=>(
-          <div key={o.id} className="flex justify-between items-center p-4 border-b border-[#f3f0eb] last:border-0 hover:bg-[#fbfaf8]">
+          <div key={o.id} className="flex justify-between items-center p-4 border-b border-[#f3f0eb] last:border-0 hover:bg-[#f3e1bf]">
             <div>
               <p className="text-[13px] font-medium">{o.id} • {o.customer}</p>
               <p className="text-[11px] text-black/40">{o.date}</p>
