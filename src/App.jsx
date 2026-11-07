@@ -23,17 +23,17 @@ import Team from "./pages/Team";
 import Integrations from "./pages/Integrations";
 import Settings from "./pages/Settings";
 
-function DashboardPage(isDark){
+function DashboardPage({isDark}){
   return(
     <div className="space-y-4">
       <Stats isDark={isDark} />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="lg:col-span-2 space-y-4"><Revenue/><Activity isDark={isDark} /></div>
-        <div className="space-y-4"><Traffic isDark={isDark} /><Growth /></div>
+        <div className="lg:col-span-2 space-y-4"><Revenue isDark={isDark} /><Activity isDark={isDark} /></div>
+        <div className="space-y-4"><Traffic /><Growth /></div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
         <TopProducts />
-        <div className="lg:col-span-2"><DataTable isDark={isDark} /></div>
+        <div className="lg:col-span-2"><DataTable isDark={isDark}  /></div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 pt-2">
         <Conversion /><Performance /><Goal />

@@ -42,7 +42,7 @@ export default function DataTable({ isDark }){
   const selectCls = `h-9 px-3 border rounded-full text-[12px] ${isDark ? 'bg-[#3d3d3d] border-white/10 text-white' : 'bg-[#f7f5f2] border-[#efece6]'}`;
 
   return(
-    <div className={`lg:col-span-2 border rounded-2xl p-5 flex flex-col h-[520px] max-h-[520px] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.04)] ${isDark ? 'bg-[#333333] border-white/10' : 'bg-white border-[#efece6]'}`}>
+    <div className={`lg:col-span-2 border rounded-2xl p-5 flex flex-col h-[520px] max-h-[520px] overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.04)] ${isDark ? 'bg-[#171717] border-white/10' : 'bg-white border-[#efece6]'}`}>
       <div className="flex justify-between items-center mb-4 gap-3">
         <h3 className={`font-semibold text-[14px] ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>Customers • {filtered.length}</h3>
         <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search... try 'olivia'" className={`h-8 px-3 border rounded-full text-[12px] focus:outline-none w-[160px] ${isDark ? 'bg-[#3d3d3d] border-white/10 text-white placeholder:text-white/40' : 'bg-[#f7f5f2] border-[#efece6] placeholder:text-[#b5b0a9]'}`} />

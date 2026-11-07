@@ -10,7 +10,7 @@ export default function Analytics({ isDark }){
     <div className="space-y-4">
       <div className="flex justify-between items-center">
         <h2 className={`text-[28px] font-light ${isDark ? 'text-white' : ''}`}>Analytics</h2>
-        <div className={`flex gap-1 rounded-full p-1 ${isDark ? 'bg-[#3d3d3d]' : 'bg-[#f3f0eb]'}`}>
+        <div className={`flex  rounded-full  ${isDark ? 'bg-[#3d3d3d]' : 'bg-[#f3f0eb]'}`}>
           {filters.map(f=><button key={f} onClick={()=>setRange(f)} className={`px-4 py-1.5 rounded-full text-[12px] ${range===f ? isDark ? 'bg-[#333333] shadow-sm border border-white/10 text-white' : 'bg-white shadow-sm border border-[#e8e5e0]' : isDark ? 'text-white/60' : 'text-black/50'}`}>{f}</button>)}
         </div>
       </div>

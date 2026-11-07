@@ -37,7 +37,7 @@ export default function Activity({ isDark }){
     });
 
     return(
-        <div className={`border rounded-2xl p-5 shadow-[0_2px_20px_rgba(0,0,0,0.04)] ${isDark ? 'bg-[#333333] border-white/10' : 'bg-white border-[#efece6]'}`}>
+        <div className={`border rounded-2xl p-5 shadow-[0_2px_20px_rgba(0,0,0,0.04)] ${isDark ? 'bg-[#171717] border-white/10' : 'bg-white border-[#efece6]'}`}>
             <header className="flex flex-col gap-3 mb-5">
               <div className="flex justify-between items-center">
                 <h3 className={`font-semibold text-[14px] ${isDark ? 'text-white' : 'text-[#1a1a1a]'}`}>Recent Activity • {filtered.length}</h3>
